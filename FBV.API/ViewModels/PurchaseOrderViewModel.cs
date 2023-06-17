@@ -6,5 +6,7 @@
         public decimal TotalPrice { get; set; }
 
         public int CustomerId { get; set; }
+
+        public List<PurchaseOrderLineViewModel> Lines { get; set; }
     }
 }

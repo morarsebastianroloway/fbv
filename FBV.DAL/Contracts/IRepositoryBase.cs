@@ -13,5 +13,6 @@ namespace FBV.DAL.Contracts
         public Task<T> UpdateAsync(T _object);
         public Task<IEnumerable<T>> GetAllAsync();
         public Task<T?> GetByIdAsync(int Id);
+        public Task SaveChangesAsync();
     }
 }

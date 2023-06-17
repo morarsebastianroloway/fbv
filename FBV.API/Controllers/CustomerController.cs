@@ -48,6 +48,8 @@ namespace FBV.API.Controllers
                 value.Id = 0;
 
                 var result = await _customerRepository.CreateAsync(_mapper.Map<Customer>(value));
+                await _customerRepository.SaveChangesAsync();
+
                 return CreatedAtAction(nameof(Get), new { id = result.Id }, _mapper.Map<CustomerViewModel>(result));
             }
             catch (Exception ex)
@@ -74,10 +76,11 @@ namespace FBV.API.Controllers
                     return NotFound();
                 }
 
-                // Update the properties of the existing customer entity with the values from the view model
+                // Update the properties of the existing entity with the values from the view model
                 existingCustomer.EmailAddress = value.EmailAddress;
 
                 await _customerRepository.UpdateAsync(existingCustomer);
+                await _customerRepository.SaveChangesAsync();
 
                 return Ok(existingCustomer);
             }
@@ -100,6 +103,7 @@ namespace FBV.API.Controllers
                 }
 
                 await _customerRepository.DeleteAsync(entityToDelete);
+                await _customerRepository.SaveChangesAsync();
 
                 return NoContent();
             }
