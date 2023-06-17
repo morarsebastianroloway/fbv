@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FBV.Domain.Entities
 {
     public class PurchaseOrder
     {
+        [Key]
         public int Id { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]

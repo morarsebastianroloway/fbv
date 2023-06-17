@@ -44,8 +44,10 @@ namespace FBV.API.Controllers
         {
             try
             {
+                // Let's set the id as 0 so we generate a new id from db
+                value.Id = 0;
+
                 var result = await _customerRepository.CreateAsync(_mapper.Map<Customer>(value));
-                //return _mapper.Map<CustomerViewModel>(result);
                 return CreatedAtAction(nameof(Get), new { id = result.Id }, _mapper.Map<CustomerViewModel>(result));
             }
             catch (Exception ex)

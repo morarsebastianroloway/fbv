@@ -1,10 +1,12 @@
 ﻿using FBV.Domain.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FBV.Domain.Entities
 {
     public class PurchaseOrderLine
     {
+        [Key]
         public int Id { get; set; }
         public string ProductName { get; set; } = string.Empty;
 
