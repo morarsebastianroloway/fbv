@@ -6,42 +6,42 @@ namespace FBV.DAL.Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T: class
     {
-        public FBVContext DataContext { get; set; }
+        public FBVContext _dataContext { get; set; }
         public RepositoryBase(FBVContext dataContext)
         {
-            DataContext = dataContext;
+            _dataContext = dataContext;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
         {
-            return await DataContext.Set<T>().AsNoTracking().ToListAsync();
+            return await _dataContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<T?> GetByIdAsync(int id)
         {
-            return await DataContext.Set<T>().FindAsync(id);
+            return await _dataContext.Set<T>().FindAsync(id);
         }
 
         public async Task<T> CreateAsync(T entity)
         {
-            await DataContext.Set<T>().AddAsync(entity);
-            await DataContext.SaveChangesAsync();
+            await _dataContext.Set<T>().AddAsync(entity);
+            await _dataContext.SaveChangesAsync();
 
             return entity;
         }
 
         public async Task<T> UpdateAsync(T entity)
         {
-            DataContext.Set<T>().Update(entity);
-            await DataContext.SaveChangesAsync();
+            _dataContext.Set<T>().Update(entity);
+            await _dataContext.SaveChangesAsync();
 
             return entity;
         }
 
         public async Task DeleteAsync(T entity)
         {
-            DataContext.Set<T>().Remove(entity);
-            await DataContext.SaveChangesAsync();
+            _dataContext.Set<T>().Remove(entity);
+            await _dataContext.SaveChangesAsync();
         }
     }
 }
