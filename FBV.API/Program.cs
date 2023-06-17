@@ -1,6 +1,14 @@
+using FBV.DAL.Contracts;
+using FBV.DAL.Data;
+using FBV.DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<FBVContext>
+    (options => options.UseSqlServer(builder.Configuration.GetConnectionString("FBVConnection")));
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
