@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FBV.DAL.Contracts
 {
-    public interface IRepository<T>
+    public interface IRepositoryBase<T>
     {
         public Task<T> CreateAsync(T _object);
         public Task DeleteAsync(T _object);

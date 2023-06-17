@@ -2,7 +2,7 @@
 
 namespace FBV.DAL.Contracts
 {
-    public interface ICustomerRepository : IRepository<Customer>
+    public interface ICustomerRepository : IRepositoryBase<Customer>
     {
     }
 }

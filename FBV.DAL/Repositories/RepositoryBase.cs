@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FBV.DAL.Repositories
 {
-    public abstract class RepositoryBase<T> : IRepository<T> where T: class
+    public abstract class RepositoryBase<T> : IRepositoryBase<T> where T: class
     {
         public FBVContext DataContext { get; set; }
         public RepositoryBase(FBVContext dataContext)

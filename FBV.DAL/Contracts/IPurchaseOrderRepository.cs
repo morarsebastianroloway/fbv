@@ -2,7 +2,7 @@
 
 namespace FBV.DAL.Contracts
 {
-    public interface IPurchaseOrderRepository : IRepository<PurchaseOrder>
+    public interface IPurchaseOrderRepository : IRepositoryBase<PurchaseOrder>
     {
     }
 }
