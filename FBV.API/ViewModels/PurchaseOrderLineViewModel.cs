@@ -1,8 +1,8 @@
 ﻿using FBV.Domain.Enums;
 
-namespace FBV.Domain.Entities
+namespace FBV.API.ViewModels
 {
-    public class PurchaseOrderLine
+    public class PurchaseOrderLineViewModel
     {
         public int Id { get; set; }
         public string ProductName { get; set; }

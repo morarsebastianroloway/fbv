@@ -1,12 +1,10 @@
-﻿namespace FBV.Domain.Entities
+﻿namespace FBV.API.ViewModels
 {
-    public class PurchaseOrder
+    public class PurchaseOrderViewModel
     {
         public int Id { get; set; }
         public decimal TotalPrice { get; set; }
 
         public int CustomerId { get; set; }
-
     }
-
 }
