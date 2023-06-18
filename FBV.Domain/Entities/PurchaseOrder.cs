@@ -11,6 +11,8 @@ namespace FBV.Domain.Entities
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalPrice { get; set; }
 
+        public byte[] ShippingSlip { get; set; }
+
         #region Navigation properties
 
         public int CustomerId { get; set; }

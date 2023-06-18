@@ -8,10 +8,14 @@ namespace FBV.Domain.Entities
     {
         [Key]
         public int Id { get; set; }
+        
         public string ProductName { get; set; } = string.Empty;
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
+
+        public bool IsPhysical { get; set; }
+        
         public MembershipType MembershipTypeId { get; set; }
 
         #region Navigation properties
