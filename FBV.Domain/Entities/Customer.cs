@@ -10,6 +10,9 @@ namespace FBV.Domain.Entities
         [MaxLength(200)]
         public string EmailAddress { get; set; } = string.Empty;
 
+        [MaxLength(500)]
+        public string Address { get; set; } = string.Empty;
+
         #region Navigation properties
 
         public List<PurchaseOrder>? PurchaseOrders { get; set; }

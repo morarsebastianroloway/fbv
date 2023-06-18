@@ -17,5 +17,6 @@ namespace FBV.DAL.Data
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public virtual DbSet<PurchaseOrderLine> PurchaseOrderLines { get; set; }
+        public virtual DbSet<Membership> Memberships { get; set; }
     }
 }
