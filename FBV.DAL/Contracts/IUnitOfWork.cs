@@ -1,4 +1,5 @@
-﻿using FBV.Domain.Entities;
+﻿using FBV.DAL.Repositories;
+using FBV.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,9 @@ namespace FBV.DAL.Contracts
 {
     public interface IUnitOfWork
     {
-        IRepositoryBase<PurchaseOrder> PurchaseOrderRepository { get;}
-        IRepositoryBase<PurchaseOrderLine> PurchaseOrderLineRepository { get; }
+        IPurchaseOrderRepository PurchaseOrderRepository { get;}
+        IPurchaseOrderLineRepository PurchaseOrderLineRepository { get; }
+        IMembershipRepository MembershipRepository { get; }
 
         Task SaveAsync();
     }

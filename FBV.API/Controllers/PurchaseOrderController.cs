@@ -53,7 +53,7 @@ namespace FBV.API.Controllers
                 // We create the po object that we will save to db
                 var po = _mapper.Map<PurchaseOrder>(value);
 
-                var result = await _purchaseOrderManager.CreatePurchaseOrderAsync(po);
+                var result = await _purchaseOrderManager.ProcessNewOrderAsync(po);
 
                 return CreatedAtAction(nameof(Get), new { id = result.Id }, _mapper.Map<PurchaseOrderViewModel>(result));
             }

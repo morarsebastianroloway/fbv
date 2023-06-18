@@ -18,10 +18,12 @@ namespace FBV.DAL.Repositories
             _context = context;
             PurchaseOrderRepository = new PurchaseOrderRepository(context);
             PurchaseOrderLineRepository = new PurchaseOrderLineRepository(context);
+            MembershipRepository = new MembershipRepository(context);
         }
 
-        public IRepositoryBase<PurchaseOrder> PurchaseOrderRepository { get; private set; }
-        public IRepositoryBase<PurchaseOrderLine> PurchaseOrderLineRepository { get; private set; }
+        public IPurchaseOrderRepository PurchaseOrderRepository { get; private set; }
+        public IPurchaseOrderLineRepository PurchaseOrderLineRepository { get; private set; }
+        public IMembershipRepository MembershipRepository { get; private set; }
 
         public async Task SaveAsync()
         {
