@@ -5,9 +5,11 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBV.API", "FBV.API\FBV.API.csproj", "{6F1DA2B6-BD30-40EE-ABA4-96217106C233}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBV.Domain", "FBV.Domain\FBV.Domain.csproj", "{B35FF6C5-7B1C-4863-9BE2-90C77C911953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBV.Domain", "FBV.Domain\FBV.Domain.csproj", "{B35FF6C5-7B1C-4863-9BE2-90C77C911953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBV.DAL", "FBV.DAL\FBV.DAL.csproj", "{3503D475-AE25-4449-9E63-B9BD8DFEAB72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FBV.DAL", "FBV.DAL\FBV.DAL.csproj", "{3503D475-AE25-4449-9E63-B9BD8DFEAB72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FBV.Test", "FBV.Test\FBV.Test.csproj", "{268B3FCD-B953-4FF3-A551-0E29B10D71E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3503D475-AE25-4449-9E63-B9BD8DFEAB72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3503D475-AE25-4449-9E63-B9BD8DFEAB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3503D475-AE25-4449-9E63-B9BD8DFEAB72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{268B3FCD-B953-4FF3-A551-0E29B10D71E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{268B3FCD-B953-4FF3-A551-0E29B10D71E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{268B3FCD-B953-4FF3-A551-0E29B10D71E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{268B3FCD-B953-4FF3-A551-0E29B10D71E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
