@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
+using FBV.API.Managers;
 using FBV.API.ViewModels;
 using FBV.DAL.Contracts;
-using FBV.DAL.Repositories;
 using FBV.Domain.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FBV.API.Controllers
@@ -13,21 +12,24 @@ namespace FBV.API.Controllers
     public class PurchaseOrderController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IPurchaseOrderRepository _purchaseOrderRepository;
+        private readonly IPurchaseOrderProcessor _purchaseOrderManager;
 
         public PurchaseOrderController(
             IMapper mapper,
-            IUnitOfWork unitOfWork)
+            IPurchaseOrderRepository purchaseOrderRepository,
+            IPurchaseOrderProcessor purchaseOrderManager)
         {
             _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            _purchaseOrderRepository = purchaseOrderRepository;
+            _purchaseOrderManager = purchaseOrderManager;
         }
 
         // GET: api/<PurchaseOrderController>
         [HttpGet]
         public async Task<IEnumerable<PurchaseOrderViewModel>> GetAsync()
         {
-            var result = await _unitOfWork.PurchaseOrderRepository.GetAllAsync();
+            var result = await _purchaseOrderRepository.GetAllAsync();
             return _mapper.Map<IEnumerable<PurchaseOrderViewModel>>(result);
         }
 
@@ -35,7 +37,7 @@ namespace FBV.API.Controllers
         [HttpGet("{id}")]
         public async Task<PurchaseOrderViewModel> Get(int id)
         {
-            var result = await _unitOfWork.PurchaseOrderRepository.GetByIdAsync(id);
+            var result = await _purchaseOrderRepository.GetByIdAsync(id);
             return _mapper.Map<PurchaseOrderViewModel>(result);
         }
 
@@ -51,14 +53,7 @@ namespace FBV.API.Controllers
                 // We create the po object that we will save to db
                 var po = _mapper.Map<PurchaseOrder>(value);
 
-                // TODO: Calculate the total price from PO lines
-                // TODO: Activate memberships if necessary
-
-                // Add the PO in the database
-                var result = await _unitOfWork.PurchaseOrderRepository.CreateAsync(po);
-
-                // Save all the changes we did
-                await _unitOfWork.SaveAsync();
+                var result = await _purchaseOrderManager.CreatePurchaseOrderAsync(po);
 
                 return CreatedAtAction(nameof(Get), new { id = result.Id }, _mapper.Map<PurchaseOrderViewModel>(result));
             }
@@ -80,7 +75,7 @@ namespace FBV.API.Controllers
                     return BadRequest("The ID in the URL does not match the ID in the entity.");
                 }
 
-                var existingPurchaseOrder = await _unitOfWork.PurchaseOrderRepository.GetByIdAsync(id);
+                var existingPurchaseOrder = await _purchaseOrderRepository.GetByIdAsync(id);
                 if (existingPurchaseOrder == null)
                 {
                     return NotFound();
@@ -92,7 +87,7 @@ namespace FBV.API.Controllers
                 // TODO: Fill with all necessary changes
                 // TODO: Remove all PO lines and add the new ones (remove the subscription if it was bought and removed)
 
-                await _unitOfWork.PurchaseOrderRepository.UpdateAsync(existingPurchaseOrder);
+                await _purchaseOrderRepository.UpdateAsync(existingPurchaseOrder);
 
                 return Ok(existingPurchaseOrder);
             }
@@ -108,13 +103,13 @@ namespace FBV.API.Controllers
         {
             try
             {
-                var entityToDelete = await _unitOfWork.PurchaseOrderRepository.GetByIdAsync(id);
+                var entityToDelete = await _purchaseOrderRepository.GetByIdAsync(id);
                 if (entityToDelete == null)
                 {
                     return NotFound();
                 }
 
-                await _unitOfWork.PurchaseOrderRepository.DeleteAsync(entityToDelete);
+                await _purchaseOrderRepository.DeleteAsync(entityToDelete);
 
                 return NoContent();
             }

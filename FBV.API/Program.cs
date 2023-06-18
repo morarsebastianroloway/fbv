@@ -1,3 +1,4 @@
+using FBV.API.Managers;
 using FBV.DAL.Contracts;
 using FBV.DAL.Data;
 using FBV.DAL.Repositories;
@@ -9,6 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FBVContext>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("FBVConnection")));
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+builder.Services.AddTransient<IPurchaseOrderRepository, PurchaseOrderRepository>();
+
+builder.Services.AddTransient<IPurchaseOrderProcessor, PurchaseOrderProcessor>();
+
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddControllers();

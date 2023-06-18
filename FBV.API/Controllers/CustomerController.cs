@@ -3,9 +3,6 @@ using FBV.API.ViewModels;
 using FBV.DAL.Contracts;
 using FBV.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Core.Types;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace FBV.API.Controllers
 {
