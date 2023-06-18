@@ -41,3 +41,12 @@ We would like to acknowledge the following resources and libraries that have bee
 - [iTextSharp](https://itextpdf.com/products/itextsharp): Documentation for iTextSharp
 - [Handlebars.Net GitHub](https://github.com/rexm/Handlebars.Net): Official repository for Handlebars.Net.
 - [Swagger Documentation](https://swagger.io/docs/): Documentation for Swagger.
+
+## Further steps
+
+- Implement authentication and authorization. In orther to keep the project simple, these were not build.
+- Create a business logic project that will stay between API and DAL projects. The PO processor should be in there. I bypass it, for the sake of simplicity 
+- Build PUT and DELETE methods for PO. For the sake of the example these methods were not build. 
+- In order to better track the subscriptions a history table should be created, so when a PO is updated we need to deactivate the subscription in case PO was updated.
+- Treat premium case: in case it has for membership for book club, when adding video membership it should change to premium (also when it has video and we're adding book club membership).
+- Create all the necessary unit tests. Only few where created as an example

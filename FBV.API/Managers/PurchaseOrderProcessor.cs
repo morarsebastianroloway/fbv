@@ -89,17 +89,6 @@ namespace FBV.API.Managers
             // Compile and render the template with the data
             string renderedTemplate = Handlebars.Compile(templateContent)(data);
 
-            //PdfDocument pdfDocument = PdfGenerator.GeneratePdf(renderedTemplate, PageSize.A4);
-
-            //byte[] fileContents;
-            //using (MemoryStream stream = new MemoryStream())
-            //{
-            //    pdfDocument.Save(stream, true);
-            //    fileContents = stream.ToArray();
-            //}
-
-            //return fileContents;
-
             // Create a new PDF document
             Document document = new Document();
 
