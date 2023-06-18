@@ -39,6 +39,11 @@ namespace FBV.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CustomerViewModel value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
                 // Let's set the id as 0 so we generate a new id from db
@@ -60,6 +65,11 @@ namespace FBV.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] CustomerViewModel value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
                 if (id != value.Id)

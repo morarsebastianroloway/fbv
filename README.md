@@ -9,6 +9,42 @@ Welcome to FunBooksAndVideos, an e-commerce shop where customers can view books 
 - Generate shipping slips for physical product orders.
 - Manage customer accounts and orders.
 
+## Testing
+
+To test the app just run ```update-database``` in Package Manager Console to create the database and then run the application.
+
+Swagger will start and you can create a customer using this json:
+```
+{
+  "emailAddress": "Liam.Briggs@gmail.com",
+  "address": "1238 Kuhl Avenue, Atlanta, GA 30328"
+}
+```
+Then use the POST PO method to add the PO using this as an example (replace the customerId with the one generated at first step):
+```
+{
+  "customerId": 5,
+  "lines": [
+    {
+      "productName": "Video \"Comprehensive First Aid Training\"",
+      "price": 15,
+      "membershipTypeId": 0
+    },
+    {
+      "productName": "Book \"The Girl on the train\"",
+      "price": 35,
+      "isPhysical": true,
+      "membershipTypeId": 0
+    },
+    {
+      "productName": "Book Club Membership",
+      "price": 55,
+      "membershipTypeId": 10
+    }
+  ]
+}
+```
+
 ## Technologies Used
 
 - .NET Core: A cross-platform, open-source framework for building modern applications.

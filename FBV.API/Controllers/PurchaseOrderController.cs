@@ -45,6 +45,11 @@ namespace FBV.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] PurchaseOrderViewModel value)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
                 // Let's set the id as 0 so we generate a new id from db
