@@ -28,13 +28,13 @@ namespace FBV.DAL.Repositories
             return entity;
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public T Update(T entity)
         {
             _dataContext.Set<T>().Update(entity);
             return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public void Delete(T entity)
         {
             _dataContext.Set<T>().Remove(entity);
         }

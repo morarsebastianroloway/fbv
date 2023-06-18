@@ -16,7 +16,7 @@ namespace FBV.Domain.Entities
         public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } = default!;
 
         #endregion Navigation properties
     }

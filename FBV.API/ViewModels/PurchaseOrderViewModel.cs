@@ -7,6 +7,6 @@
 
         public int CustomerId { get; set; }
 
-        public List<PurchaseOrderLineViewModel> Lines { get; set; }
+        public List<PurchaseOrderLineViewModel> Lines { get; set; } = default!;
     }
 }

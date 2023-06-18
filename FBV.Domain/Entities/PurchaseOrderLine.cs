@@ -23,7 +23,7 @@ namespace FBV.Domain.Entities
         public int PurchaseOrderId { get; set; }
 
         [ForeignKey("PurchaseOrderId")]
-        public PurchaseOrder PurchaseOrder { get; set; }
+        public PurchaseOrder PurchaseOrder { get; set; } = default!;
 
         #endregion Navigation properties
     }

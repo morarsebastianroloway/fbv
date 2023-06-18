@@ -11,16 +11,16 @@ namespace FBV.Domain.Entities
         [Column(TypeName = "decimal(18,2)")]
         public decimal TotalPrice { get; set; }
 
-        public byte[] ShippingSlip { get; set; }
+        public byte[] ShippingSlip { get; set; } = default!;
 
         #region Navigation properties
 
         public int CustomerId { get; set; }
 
         [ForeignKey("CustomerId")]
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } = default!;
 
-        public List<PurchaseOrderLine> Lines { get; set; }
+        public List<PurchaseOrderLine> Lines { get; set; } = default!;
 
         #endregion Navigation properties
     }

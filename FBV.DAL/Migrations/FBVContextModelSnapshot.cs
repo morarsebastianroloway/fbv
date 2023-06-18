@@ -42,7 +42,7 @@ namespace FBV.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("FBV.Domain.Entities.Membership", b =>
@@ -66,7 +66,7 @@ namespace FBV.DAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Memberships");
+                    b.ToTable("Memberships", (string)null);
                 });
 
             modelBuilder.Entity("FBV.Domain.Entities.PurchaseOrder", b =>
@@ -91,7 +91,7 @@ namespace FBV.DAL.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("PurchaseOrders");
+                    b.ToTable("PurchaseOrders", (string)null);
                 });
 
             modelBuilder.Entity("FBV.Domain.Entities.PurchaseOrderLine", b =>
@@ -122,7 +122,7 @@ namespace FBV.DAL.Migrations
 
                     b.HasIndex("PurchaseOrderId");
 
-                    b.ToTable("PurchaseOrderLines");
+                    b.ToTable("PurchaseOrderLines", (string)null);
                 });
 
             modelBuilder.Entity("FBV.Domain.Entities.Membership", b =>

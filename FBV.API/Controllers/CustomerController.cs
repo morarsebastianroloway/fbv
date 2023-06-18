@@ -76,7 +76,7 @@ namespace FBV.API.Controllers
                 // Update the properties of the existing entity with the values from the view model
                 existingCustomer.EmailAddress = value.EmailAddress;
 
-                await _customerRepository.UpdateAsync(existingCustomer);
+                _customerRepository.Update(existingCustomer);
                 await _customerRepository.SaveChangesAsync();
 
                 return Ok(existingCustomer);
@@ -99,7 +99,7 @@ namespace FBV.API.Controllers
                     return NotFound();
                 }
 
-                await _customerRepository.DeleteAsync(entityToDelete);
+                _customerRepository.Delete(entityToDelete);
                 await _customerRepository.SaveChangesAsync();
 
                 return NoContent();
