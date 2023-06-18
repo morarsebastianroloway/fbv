@@ -24,5 +24,4 @@ namespace FBV.Domain.Entities
 
         #endregion Navigation properties
     }
-
 }

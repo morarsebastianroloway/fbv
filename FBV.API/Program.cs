@@ -3,6 +3,7 @@ using FBV.DAL.Contracts;
 using FBV.DAL.Data;
 using FBV.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<FBVContext>
     (options => options.UseSqlServer(builder.Configuration.GetConnectionString("FBVConnection")));
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 builder.Services.AddTransient<IPurchaseOrderRepository, PurchaseOrderRepository>();
+
+builder.Services.AddTransient<IFileWrapper, FileWrapper>();
 
 builder.Services.AddTransient<IPurchaseOrderProcessor, PurchaseOrderProcessor>();
 
@@ -22,6 +25,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
 var app = builder.Build();
 

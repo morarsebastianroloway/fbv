@@ -16,7 +16,7 @@ Welcome to FunBooksAndVideos, an e-commerce shop where customers can view books 
 - ASP.NET Core Web API: A framework for building HTTP-based services using .NET.
 - AutoMapper: A library for object-to-object mapping.
 - Handlebars.Net: A template engine for generating HTML templates.
-- HTML-Renderer: A library for generating pdf files.
+- iTextSharp: A library for generating pdf files.
 - Swagger: An open-source framework for documenting and testing APIs.
 
 ## API Documentation
@@ -38,6 +38,6 @@ We would like to acknowledge the following resources and libraries that have bee
 - [Microsoft Docs](https://docs.microsoft.com/): Official documentation for .NET Core and related technologies.
 - [Entity Framework Core Docs](https://docs.microsoft.com/ef/core/): Documentation for Entity Framework Core.
 - [AutoMapper Documentation](https://docs.automapper.org/): Documentation for AutoMapper.
-- [HTML-Renderer](https://github.com/ArthurHub/HTML-Renderer): Documentation for HTML-Renderer
+- [iTextSharp](https://itextpdf.com/products/itextsharp): Documentation for iTextSharp
 - [Handlebars.Net GitHub](https://github.com/rexm/Handlebars.Net): Official repository for Handlebars.Net.
 - [Swagger Documentation](https://swagger.io/docs/): Documentation for Swagger.

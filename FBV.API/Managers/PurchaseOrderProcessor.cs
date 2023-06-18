@@ -2,9 +2,9 @@
 using FBV.Domain.Entities;
 using FBV.Domain.Enums;
 using HandlebarsDotNet;
-using PdfSharp;
-using PdfSharp.Pdf;
-using TheArtOfDev.HtmlRenderer.PdfSharp;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace FBV.API.Managers
 {
@@ -12,11 +12,13 @@ namespace FBV.API.Managers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICustomerRepository _customerRepository;
+        private readonly IFileWrapper _fileWrapper;
 
-        public PurchaseOrderProcessor(IUnitOfWork unitOfWork, ICustomerRepository customerRepository)
+        public PurchaseOrderProcessor(IUnitOfWork unitOfWork, ICustomerRepository customerRepository, IFileWrapper fileWrapper)
         {
             _unitOfWork = unitOfWork;
             _customerRepository = customerRepository;
+            _fileWrapper = fileWrapper;
         }
 
         public async Task<PurchaseOrder> ProcessNewOrderAsync(PurchaseOrder purchaseOrder)
@@ -74,7 +76,7 @@ namespace FBV.API.Managers
         {
             // Load the template from the file
             string templatePath = "shippingSlip.html";
-            string templateContent = File.ReadAllText(templatePath);
+            string templateContent = _fileWrapper.ReadAllText(templatePath);
 
             // Prepare the data to populate the template
             var data = new
@@ -87,14 +89,41 @@ namespace FBV.API.Managers
             // Compile and render the template with the data
             string renderedTemplate = Handlebars.Compile(templateContent)(data);
 
-            PdfDocument pdfDocument = PdfGenerator.GeneratePdf(renderedTemplate, PageSize.A4);
+            //PdfDocument pdfDocument = PdfGenerator.GeneratePdf(renderedTemplate, PageSize.A4);
 
-            byte[] fileContents;
-            using (MemoryStream stream = new MemoryStream())
+            //byte[] fileContents;
+            //using (MemoryStream stream = new MemoryStream())
+            //{
+            //    pdfDocument.Save(stream, true);
+            //    fileContents = stream.ToArray();
+            //}
+
+            //return fileContents;
+
+            // Create a new PDF document
+            Document document = new Document();
+
+            // Prepare the output stream to save the PDF document
+            MemoryStream outputStream = new MemoryStream();
+            PdfWriter writer = PdfWriter.GetInstance(document, outputStream);
+
+            // Open the document for writing
+            document.Open();
+
+            // Create a new HTMLWorker to parse the HTML content
+            HTMLWorker htmlWorker = new HTMLWorker(document);
+
+            // Parse the HTML content and add it to the document
+            using (StringReader sr = new StringReader(renderedTemplate))
             {
-                pdfDocument.Save(stream, true);
-                fileContents = stream.ToArray();
+                htmlWorker.Parse(sr);
             }
+
+            // Close the document
+            document.Close();
+
+            // Get the generated PDF document as a byte array
+            byte[] fileContents = outputStream.ToArray();
 
             return fileContents;
         }
